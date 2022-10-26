@@ -1,10 +1,6 @@
 FROM nvidia/cuda:11.4.3-base-ubuntu20.04
 
-# Author: drscotthawley
-# How I use this for interactive shell work on the A100 pods:
-# $ docker build -t scotts_docker .
-# $ docker run  -v /home/ubuntu/:/home/ubuntu -it scotts_docker /bin/bash
-
+# Original author: drscotthawley
 
 # Set bash as default shell
 ENV SHELL=/bin/bash
@@ -37,9 +33,6 @@ RUN pip install \
     wheel \
     prefigure 
 
-# commenting out dmarx's jupyter call
-#CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--allow-root", "--no-browser"]
-#EXPOSE 8888
-
-# this bash exits immediately but i'll leave it in for now
-CMD bash
+# jupyter call
+CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--allow-root", "--no-browser"]
+EXPOSE 8888
